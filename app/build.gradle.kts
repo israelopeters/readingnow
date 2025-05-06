@@ -41,6 +41,9 @@ android {
     }
 }
 
+val ktor_version: String by project
+val slf4j_version: String by project
+
 dependencies {
 
     implementation(libs.androidx.core.ktx)
@@ -58,6 +61,11 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-    implementation("com.google.dagger:hilt-android:2.56.1")
-    ksp("com.google.dagger:hilt-android-compiler:2.56.1")
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.android.compiler)
+    implementation("io.ktor:ktor-client-core:$ktor_version")
+    implementation("io.ktor:ktor-client-cio:$ktor_version")
+    implementation("io.ktor:ktor-serialization-jackson:$ktor_version")
+    implementation("io.ktor:ktor-client-auth:$ktor_version")
+    implementation("org.slf4j:slf4j-android:$slf4j_version")
 }
