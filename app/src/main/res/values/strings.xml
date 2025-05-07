@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">ReadingNow</string>
+    <string name="readingnow">Reading Now</string>
+    <string name="welcome_subtitle">See what other readers like you are reading</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="sign_in">Sign In</string>
+    <string name="not_yet_registered">Not yet registered?</string>
+    <string name="sign_up">Sign Up</string>
 </resources>
