@@ -1,5 +1,6 @@
 package com.example.readingnow.service
 
+import com.example.readingnow.data.ApiRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -40,5 +41,11 @@ object ApiModule {
                 url(BASE_URL)
             }
         }
+    }
+
+    @Provides
+    @Singleton
+    fun provideApiRepository(): ApiRepository {
+        return ApiRepository(provideHttpClient())
     }
 }
