@@ -27,7 +27,7 @@ class ApiRepository @Inject constructor(private val client: HttpClient) {
 
     suspend fun addNewUser(newUser: UserCreation): UserCreationState {
         try {
-            val response: User = client.post("api/v1/users/add") {
+            val response: User = client.post("/api/v1/users/add") {
                 contentType(ContentType.Application.Json)
                 setBody(newUser)
             }.processBody()
