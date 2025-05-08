@@ -7,4 +7,10 @@
     <string name="sign_in">Sign In</string>
     <string name="not_yet_registered">Not yet registered?</string>
     <string name="sign_up">Sign Up</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="create_your_account">Create Your Account</string>
+    <string name="create_account">Create Account</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="ready_to_see_what_others_are_reading">Ready to see what others are reading?</string>
 </resources>

@@ -54,7 +54,16 @@ fun WelcomeScreen(
 ) {
     when (userViewModel.currentUser.authMode) {
 
-        AuthMode.BUSY -> IndeterminateCircularIndicator()
+        AuthMode.BUSY ->
+            Box(modifier) {
+                Image(
+                    painter = painterResource(R.drawable.welcome_screen_background),
+                    contentDescription = null,
+                    modifier = Modifier.fillMaxSize()
+                )
+
+                IndeterminateCircularIndicator()
+            }
 
         AuthMode.SIGNED_IN -> SignInSuccess(
             userState = userViewModel.currentUser,
@@ -66,7 +75,7 @@ fun WelcomeScreen(
                 Image(
                     painter = painterResource(R.drawable.welcome_screen_background),
                     contentDescription = null,
-                    modifier = modifier.fillMaxSize()
+                    modifier = Modifier.fillMaxSize()
                 )
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
@@ -164,7 +173,9 @@ fun AppSignIn(
         Button(
             onClick = onSignInClicked,
             enabled = isFormValid(userViewModel.userEmail, userViewModel.userPassword),
-            modifier = Modifier.padding(16.dp).fillMaxWidth()
+            modifier = Modifier
+                .padding(16.dp)
+                .fillMaxWidth()
         ) {
             Text(
                 text = stringResource(R.string.sign_in),
@@ -217,12 +228,12 @@ fun SignInSuccess(
     modifier: Modifier = Modifier,
     userState: UserUiState
 ) {
-    Box(modifier = modifier) {
+    Box(modifier) {
 
         Image(
             painter = painterResource(R.drawable.welcome_screen_background),
             contentDescription = null,
-            modifier = modifier.fillMaxSize()
+            modifier = Modifier.fillMaxSize()
         )
 
         Column(
@@ -240,7 +251,7 @@ fun SignInSuccess(
             Spacer(Modifier.height(8.dp))
 
             Text(
-                text = "Ready to prove your bibliophilic prowess?",
+                text = stringResource(R.string.ready_to_see_what_others_are_reading),
                 modifier = Modifier.padding(vertical = 8.dp)
             )
             OutlinedButton(
@@ -350,14 +361,16 @@ fun AppSignUpPreview() {
 
 @Preview(
     showBackground = true,
-    uiMode = UI_MODE_NIGHT_NO,
+    showSystemUi = true,
     device = Devices.PIXEL_7_PRO,
+    uiMode = UI_MODE_NIGHT_NO,
     name = "DefaultPreviewLight"
 )
 @Preview(
     showBackground = true,
-    uiMode = UI_MODE_NIGHT_YES,
+    showSystemUi = true,
     device = Devices.PIXEL_7_PRO,
+    uiMode = UI_MODE_NIGHT_YES,
     name = "DefaultPreviewDark"
 )
 @Composable
