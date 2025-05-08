@@ -13,4 +13,8 @@
     <string name="create_account">Create Account</string>
     <string name="already_have_an_account">Already have an account?</string>
     <string name="ready_to_see_what_others_are_reading">Ready to see what others are reading?</string>
+    <string name="arrow_back">Arrow Back</string>
+    <string name="welcome">Welcome</string>
+    <string name="home">Home</string>
+    <string name="profile">Profile</string>
 </resources>
