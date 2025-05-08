@@ -96,6 +96,7 @@ fun SignUpForm(
     var email: String by rememberSaveable { mutableStateOf("") }
     var password: String by rememberSaveable { mutableStateOf("") }
     var username: String by rememberSaveable { mutableStateOf("") }
+    var isFormValid by rememberSaveable { mutableStateOf(true) }
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -120,6 +121,7 @@ fun SignUpForm(
             value = firstName,
             onValueChange = { firstName = it },
             label = { Text(stringResource(R.string.first_name)) },
+            isError = !isFormValid && firstName.isBlank(),
             singleLine = true,
             shape = MaterialTheme.shapes.medium,
             colors = TextFieldDefaults.colors(),
@@ -129,6 +131,7 @@ fun SignUpForm(
             value = lastName,
             onValueChange = { lastName = it },
             label = { Text(stringResource(R.string.last_name)) },
+            isError = !isFormValid && lastName.isBlank(),
             singleLine = true,
             shape = MaterialTheme.shapes.medium,
             colors = TextFieldDefaults.colors(),
@@ -138,6 +141,7 @@ fun SignUpForm(
             value = email,
             onValueChange = { email = it },
             label = { Text(stringResource(R.string.email)) },
+            isError = !isFormValid && email.isBlank(),
             singleLine = true,
             shape = MaterialTheme.shapes.medium,
             colors = TextFieldDefaults.colors(),
@@ -148,6 +152,7 @@ fun SignUpForm(
             onValueChange = { password = it },
             label = { Text(stringResource(R.string.password)) },
             visualTransformation = PasswordVisualTransformation(),
+            isError = !isFormValid && password.isBlank(),
             singleLine = true,
             shape = MaterialTheme.shapes.medium,
             colors = TextFieldDefaults.colors(),
@@ -155,8 +160,10 @@ fun SignUpForm(
         )
         Button(
             onClick = {
-                Log.v(TAG,"SignUpScreen - Added user before network request --- ${userViewModel.addedUser}"
-                )
+                // Toggle form validity to indicate invalid fields
+                isFormValid = isFormValid(email, password, firstName, lastName)
+
+                Log.v(TAG,"SignUpScreen - Added user before network request --- ${userViewModel.addedUser}")
                 userViewModel.addNewUser(
                     UserCreation(
                         firstName = firstName,
