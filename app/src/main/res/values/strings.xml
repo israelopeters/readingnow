@@ -17,4 +17,6 @@
     <string name="welcome">Welcome</string>
     <string name="home">Home</string>
     <string name="profile">Profile</string>
+    <string name="sign_out_confirmation">Sign Out</string>
+    <string name="sign_out_confirmation_text">Are you sure you want to sign out?</string>
 </resources>
