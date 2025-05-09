@@ -25,5 +25,6 @@ enum class AuthMode{
 enum class SignUpMode{
     ACTIVE,
     PROGRESS,
-    INACTIVE
+    INACTIVE,
+    ERROR
 }

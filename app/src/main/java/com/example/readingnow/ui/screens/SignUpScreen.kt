@@ -43,10 +43,11 @@ import com.example.readingnow.data.ApiRepository
 import com.example.readingnow.model.UserCreation
 import com.example.readingnow.service.SignUpMode
 import com.example.readingnow.service.UserViewModel
+import com.example.readingnow.ui.components.AppAlertDialog
 import com.example.readingnow.ui.components.IndeterminateCircularIndicator
 import io.ktor.client.HttpClient
 
-private const val TAG: String = "BookieBoardActivity"
+private const val TAG: String = "ReadingNowActivity"
 
 @Composable
 fun SignUpScreen(
@@ -81,6 +82,14 @@ fun SignUpScreen(
                         onSignInClicked = onSignInClicked
                     )
                 }
+
+            SignUpMode.ERROR -> AppAlertDialog(
+                onDismissRequest = { userViewModel.retrySignUp() },
+                onConfirmation = { userViewModel.retrySignUp() },
+                dialogTitle = "Sign Up Error",
+                dialogText = userViewModel.addedUser.error ?: "Error encountered. Try again.",
+                modifier = modifier
+            )
         }
     }
 }
@@ -95,7 +104,6 @@ fun SignUpForm(
     var lastName: String by rememberSaveable { mutableStateOf("") }
     var email: String by rememberSaveable { mutableStateOf("") }
     var password: String by rememberSaveable { mutableStateOf("") }
-    var username: String by rememberSaveable { mutableStateOf("") }
     var isFormValid by rememberSaveable { mutableStateOf(true) }
 
     Column(
@@ -160,23 +168,21 @@ fun SignUpForm(
         )
         Button(
             onClick = {
-                // Toggle form validity to indicate invalid fields
-                isFormValid = isFormValid(email, password, firstName, lastName)
-
-                Log.v(TAG,"SignUpScreen - Added user before network request --- ${userViewModel.addedUser}")
-                userViewModel.addNewUser(
-                    UserCreation(
-                        firstName = firstName,
-                        lastName = lastName,
-                        email = email,
-                        password = password,
-                        username = username
-                    )
+                if (!checkFormValidity(email, password, firstName, lastName)) {
+                    isFormValid = false
+                }
+                Log.v(TAG,"SignUpScreen - VM Added User before network request --- ${userViewModel.addedUser}")
+                val newUser = UserCreation(
+                    firstName = firstName,
+                    lastName = lastName,
+                    email = email,
+                    password = password,
+                    username = firstName + lastName
                 )
-                Log.v(TAG,"Added user after network request --- ${userViewModel.addedUser}"
-                )
+                Log.v(TAG,"SignUpScreen - New user before network request --- ${newUser.email}")
+                userViewModel.addNewUser(newUser)
             },
-            enabled = isFormValid(email, password, firstName, lastName),
+            enabled = checkFormValidity(email, password, firstName, lastName),
             modifier = Modifier
                 .padding(16.dp)
                 .fillMaxWidth()
@@ -209,7 +215,7 @@ fun SignUpForm(
     }
 }
 
-fun isFormValid(
+fun checkFormValidity(
     email: String?, password: String?, firstName: String?, lastName: String?
 ): Boolean {
     return email?.isNotEmpty() == true &&

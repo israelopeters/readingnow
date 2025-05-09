@@ -13,7 +13,9 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            ReadingNowTheme { }
+            ReadingNowTheme {
+                ReadingNowApp()
+            }
         }
     }
 }

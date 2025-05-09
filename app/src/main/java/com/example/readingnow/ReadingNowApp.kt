@@ -57,10 +57,16 @@ fun ReadingNowApp(
             }
         },
         bottomBar = {
-            CustomBottomAppBar(
-                onHomeClicked = { navController.navigate(AppScreen.Home.name) },
-                onProfileClicked = { }
+            val noBottomAppBarScreens = listOf(
+                AppScreen.Welcome.name,
+                AppScreen.SignUp.name,
             )
+            if (!noBottomAppBarScreens.contains(currentScreen.name)) {
+                CustomBottomAppBar(
+                    onHomeClicked = { navController.navigate(AppScreen.Home.name) },
+                    onProfileClicked = { }
+                )
+            }
         },
         modifier = modifier
 

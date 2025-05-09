@@ -39,18 +39,16 @@ class UserViewModel @Inject constructor(private val repository: ApiRepository): 
         viewModelScope.launch(Dispatchers.IO) {
             currentUser = currentUser.copy(authMode = AuthMode.BUSY)
             try {
-                safelyCall {
-                    currentUser = repository.getUser(
-                        listOf(userEmail, userPassword)
-                    )
-                }
-                Log.v(TAG, "ViewModel - After logging in: $currentUser")
+                currentUser = repository.getUser(
+                    listOf(userEmail, userPassword)
+                )
+                Log.v(TAG, "VM - User after sign in ::: $currentUser")
             } catch (e: Exception) {
                 currentUser = currentUser.copy(
                     authMode = AuthMode.SIGNED_OUT,
                     error = e.message
                 )
-                Log.v(TAG, "ViewModel - Error after login attempt: $currentUser")
+                Log.v(TAG, "VM - Error after sign in attempt ::: $currentUser")
             }
         }
     }
@@ -58,15 +56,21 @@ class UserViewModel @Inject constructor(private val repository: ApiRepository): 
     fun addNewUser(newUser: UserCreation): UserCreationState {
         viewModelScope.launch(Dispatchers.IO) {
             addedUser = addedUser.copy(signUpMode = SignUpMode.PROGRESS)
+            Log.v(TAG,"VM - Adding user (set status to progress) ::: ${newUser.email}")
+
             try {
-                safelyCall {
-                    addedUser = repository.addNewUser(newUser)
-                }
+                addedUser = repository.addNewUser(newUser)
                 if (addedUser.email != null) {
+                    Log.v(TAG, "VM - User added ::: $addedUser")
                     addedUser = addedUser.copy(signUpMode = SignUpMode.ACTIVE)
                 }
             } catch (e: Exception) {
-                addedUser = addedUser.copy(error = e.message)
+                Log.v(TAG, "VM - Error ::: ${e.message}")
+                addedUser = addedUser.copy(
+                    signUpMode = SignUpMode.ERROR,
+                    error = e.message
+                )
+                Log.v(TAG, "VM - Error ::: Failed to add user")
             }
         }
         return addedUser
@@ -85,9 +89,10 @@ class UserViewModel @Inject constructor(private val repository: ApiRepository): 
         }
     }
 
-    suspend fun <T> safelyCall(execute: suspend () -> T): Result<T> = try {
-        Result.success(execute())
-    } catch (e: Exception) {
-        Result.failure(Throwable(message = e.message ?: "Network request error!"))
+    fun retrySignUp() {
+        viewModelScope.launch(Dispatchers.IO) {
+            Log.v(TAG, "VM - Sign up error: Trying again")
+            addedUser = addedUser.copy(signUpMode = SignUpMode.INACTIVE)
+        }
     }
 }

@@ -96,7 +96,7 @@ fun DropdownMenuWithDetails(onSignOutClicked: () -> Unit) {
     name = "DefaultPreviewDark"
 )
 @Composable
-fun BookieBoardScreenPreview() {
+fun ReadingNowScreenPreview() {
     ReadingNowTheme {
         DropdownMenuWithDetails({ })
     }

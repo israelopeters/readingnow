@@ -23,8 +23,8 @@ fun AppAlertDialog(
     onConfirmation: () -> Unit,
     dialogTitle: String,
     dialogText: String,
-    icon: ImageVector,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    icon: ImageVector = Icons.Filled.Info,
 ) {
     AlertDialog(
         icon = {

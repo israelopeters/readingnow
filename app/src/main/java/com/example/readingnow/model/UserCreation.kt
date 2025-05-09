@@ -5,5 +5,5 @@ data class UserCreation(
     val lastName: String,
     val email: String,
     val password: String,
-    val username: String
+    val username: String? = null
 )

@@ -172,7 +172,7 @@ fun AppSignIn(
         )
         Button(
             onClick = onSignInClicked,
-            enabled = isFormValid(userViewModel.userEmail, userViewModel.userPassword),
+            enabled = checkFormValidity(userViewModel.userEmail, userViewModel.userPassword),
             modifier = Modifier
                 .padding(16.dp)
                 .fillMaxWidth()
@@ -189,7 +189,7 @@ fun AppSignIn(
     }
 }
 
-fun isFormValid(email: String?, password: String?): Boolean {
+fun checkFormValidity(email: String?, password: String?): Boolean {
     return email?.isNotEmpty() == true && password?.isNotEmpty() == true
 }
 
