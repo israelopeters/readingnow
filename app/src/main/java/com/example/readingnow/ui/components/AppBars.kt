@@ -54,7 +54,7 @@ fun CustomBottomAppBar(
                 }
             }
         },
-        contentPadding = PaddingValues(8.dp)
+        contentPadding = PaddingValues(0.dp)
     )
 }
 
@@ -90,7 +90,7 @@ fun CustomTopAppBar(
             titleContentColor = MaterialTheme.colorScheme.onSurface
         ),
         actions = { DropdownMenuWithDetails(onSignOutClicked) },
-        modifier = modifier.padding(8.dp).fillMaxWidth()
+        modifier = modifier.padding(horizontal = 8.dp).fillMaxWidth()
     )
 }
 
