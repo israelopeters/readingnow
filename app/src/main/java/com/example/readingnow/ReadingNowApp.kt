@@ -48,7 +48,12 @@ fun ReadingNowApp(
             if (!noTopBarScreens.contains(currentScreen.name)) {
                 CustomTopAppBar(
                     currentScreen = currentScreen,
-                    canNavigate = navController.previousBackStackEntry != null,
+                    canNavigate = // Remove back back button from home screen
+                        if (currentScreen.name == AppScreen.Home.name) {
+                            false
+                        } else {
+                            navController.previousBackStackEntry != null
+                        },
                     navigateUp = {  },
                     onSignOutClicked = {
                         openSignOutAlertDialog = true
