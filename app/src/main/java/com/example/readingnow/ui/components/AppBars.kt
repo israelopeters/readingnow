@@ -71,7 +71,8 @@ fun CustomTopAppBar(
         title = {
             Text(
                 text = stringResource(currentScreen.title),
-                style = MaterialTheme.typography.titleLarge
+                style = MaterialTheme.typography.titleLarge,
+                modifier = Modifier.padding(horizontal = 8.dp)
             )
         },
 
@@ -80,7 +81,8 @@ fun CustomTopAppBar(
                 IconButton(onClick = navigateUp) {
                     Icon(
                         imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                        contentDescription = stringResource(R.string.arrow_back)
+                        contentDescription = stringResource(R.string.arrow_back),
+                        modifier = Modifier.padding(horizontal = 8.dp)
                     )
                 }
             }
@@ -90,7 +92,7 @@ fun CustomTopAppBar(
             titleContentColor = MaterialTheme.colorScheme.onSurface
         ),
         actions = { DropdownMenuWithDetails(onSignOutClicked) },
-        modifier = modifier.padding(horizontal = 8.dp).fillMaxWidth()
+        modifier = modifier.fillMaxWidth()
     )
 }
 
@@ -108,7 +110,7 @@ fun CustomTopAppBar(
     name = "DefaultPreviewDark"
 )
 @Composable
-fun HomeScreenPreview() {
+fun CustomBottomBarPreview() {
     ReadingNowTheme {
         CustomBottomAppBar({ }, { })
     }
@@ -127,7 +129,7 @@ fun HomeScreenPreview() {
     name = "DefaultPreviewDark"
 )
 @Composable
-fun ReviewsAppTopBarPreview() {
+fun CustomTopAppBarPreview() {
     ReadingNowTheme {
         CustomTopAppBar(
             currentScreen = AppScreen.SignUp,

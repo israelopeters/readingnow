@@ -166,6 +166,12 @@ fun SignUpForm(
             colors = TextFieldDefaults.colors(),
             modifier = Modifier.fillMaxWidth()
         )
+
+        // Add photo picker (implement logic to persist the image to a
+        // third-part remote storage location, collect the URL, and save
+        // it to the user's profilePicUrl field as a String)
+
+        
         Button(
             onClick = {
                 if (!checkFormValidity(email, password, firstName, lastName)) {

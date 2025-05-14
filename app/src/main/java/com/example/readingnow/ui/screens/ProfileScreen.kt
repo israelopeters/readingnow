@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -51,10 +50,10 @@ fun ProfileScreen(
         Column(
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier.padding(top = 8.dp, start = 8.dp, end = 8.dp),
+            modifier = Modifier.fillMaxSize()
         ) {
 
-            Spacer(Modifier.height(100.dp))
+            Spacer(Modifier.height(150.dp))
 
             // Profile picture
             if (userViewModel.currentUser.profilePicUrl.isNullOrBlank()) {
@@ -90,15 +89,13 @@ fun ProfileScreen(
                 text = "I am a bookworm, so keep the atmosphere bookish!",
                 textAlign = TextAlign.Center,
                 fontSize = 15.sp,
-                modifier = Modifier.padding(horizontal = 16.dp)
+                modifier = Modifier.padding(horizontal = 32.dp)
             )
 
             // Edit profile button
             Button(
                 onClick = onEditProfileClicked,
-                modifier = Modifier
-                    .padding(16.dp)
-                    .fillMaxWidth()
+                modifier = Modifier.padding(vertical = 16.dp, horizontal = 32.dp)
             ) {
                 Text(
                     text = "Edit Profile",

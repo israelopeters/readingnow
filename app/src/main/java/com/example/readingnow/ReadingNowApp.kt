@@ -98,14 +98,13 @@ fun ReadingNowApp(
         NavHost(
             navController = navController,
             startDestination = AppScreen.Welcome.name,
-            modifier = Modifier.padding(innerPadding)
         ) {
             composable(route = AppScreen.Welcome.name) {
                 WelcomeScreen(
                     userViewModel = userViewModel,
                     onContinueClicked = { navController.navigate(AppScreen.Home.name) },
                     onSignUpClicked = { navController.navigate(AppScreen.SignUp.name) },
-                    modifier = modifier.fillMaxSize()
+                    modifier = Modifier.fillMaxSize()
                 )
             }
             composable(route = AppScreen.Home.name) {
