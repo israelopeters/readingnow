@@ -4,6 +4,7 @@ data class UserUiState(
     val email: String? = null,
     val firstName: String? = null,
     val lastName: String? = null,
+    val profilePicUrl: String? = null,
     val authMode: AuthMode = AuthMode.SIGNED_OUT,
     val isLoading: Boolean = false,
     val error: String? = null

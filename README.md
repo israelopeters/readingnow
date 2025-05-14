@@ -14,6 +14,10 @@ A user can perform the following actions:
 ## Product Demo
 Coming soon...
 
+## Screens
+
+### Profile
+<a href="https://www.freepik.com/free-vector/user-circles-set_145856997.htm">Default user image by juicy_fish on Freepik</a>
 
 ## Data Source API
 Coming soon...
