@@ -24,6 +24,7 @@ import com.example.readingnow.ui.components.AppScreen
 import com.example.readingnow.ui.components.CustomBottomAppBar
 import com.example.readingnow.ui.components.CustomTopAppBar
 import com.example.readingnow.ui.screens.HomeScreen
+import com.example.readingnow.ui.screens.ProfileScreen
 import com.example.readingnow.ui.screens.SignUpScreen
 import com.example.readingnow.ui.screens.WelcomeScreen
 
@@ -69,7 +70,7 @@ fun ReadingNowApp(
             if (!noBottomAppBarScreens.contains(currentScreen.name)) {
                 CustomBottomAppBar(
                     onHomeClicked = { navController.navigate(AppScreen.Home.name) },
-                    onProfileClicked = { }
+                    onProfileClicked = { navController.navigate(AppScreen.Profile.name) }
                 )
             }
         },
@@ -117,6 +118,12 @@ fun ReadingNowApp(
                         userViewModel.clearAddedUser()
                         navController.navigate(AppScreen.Welcome.name)
                     }
+                )
+            }
+            composable(route = AppScreen.Profile.name) {
+                ProfileScreen(
+                    userViewModel = userViewModel,
+                    onEditProfileClicked = { }
                 )
             }
         }
