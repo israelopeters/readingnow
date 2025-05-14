@@ -49,8 +49,12 @@ fun ReadingNowApp(
             if (!noTopBarScreens.contains(currentScreen.name)) {
                 CustomTopAppBar(
                     currentScreen = currentScreen,
-                    canNavigate = // Remove back back button from home screen
-                        if (currentScreen.name == AppScreen.Home.name) {
+                    canNavigate = // Remove back back button from home and profile screens
+                        if (
+                            currentScreen.name == AppScreen.Home.name ||
+                            currentScreen.name == AppScreen.Profile.name
+                            )
+                        {
                             false
                         } else {
                             navController.previousBackStackEntry != null
