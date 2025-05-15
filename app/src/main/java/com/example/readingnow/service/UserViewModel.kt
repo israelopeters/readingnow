@@ -1,5 +1,6 @@
 package com.example.readingnow.service
 
+import android.net.Uri
 import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -32,6 +33,13 @@ class UserViewModel @Inject constructor(private val repository: ApiRepository): 
     fun updatePassword(input: String) {
         viewModelScope.launch(Dispatchers.IO) {
             userPassword = input
+        }
+    }
+
+    fun uploadProfilePic(profilePicUri: Uri) {
+        viewModelScope.launch(Dispatchers.IO) {
+            // Make network request call to upload and get location url back
+            // currentUser = currentUser.copy(profilePicUrl = )
         }
     }
 
