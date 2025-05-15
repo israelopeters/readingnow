@@ -11,8 +11,13 @@ A user can perform the following actions:
 - Bookmark a book posted
 - Ask the app for a book recommendation (AI)
 
-## Product Demo
-Coming soon...
+## Product Demo (in progress)
+Watch the video below to see the app in use (please watch in full-screen mode to see the full height at once). This is the demo so far; the app is still under development.
+
+
+https://github.com/user-attachments/assets/fcd59a9b-a6d3-496b-83de-60af2d0cb2e1
+
+
 
 ## Screens
 
@@ -20,7 +25,7 @@ Coming soon...
 <a href="https://www.freepik.com/free-vector/user-circles-set_145856997.htm">Default user image by juicy_fish on Freepik</a>
 
 ## Data Source API
-Coming soon...
+The app consumes a Java-based [AWS-hosted API](https://github.com/israelopeters/readingnow-backend) that is connected to an AWS-hosted Postgres RDS (data store)
 
 ## Built With
 
